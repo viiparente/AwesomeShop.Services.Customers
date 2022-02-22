@@ -5,7 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AwesomeShop.Services.Customers.Application\AwesomeShop.Services.Customers.Application.csproj" />
+    <ProjectReference Include="..\AwesomeShop.Services.Customers.Infrastructure\AwesomeShop.Services.Customers.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
