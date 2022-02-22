@@ -6,8 +6,6 @@
 
   <ItemGroup>
     <Folder Include="Subscribers\" />
-    <Folder Include="View Models\" />
-    <Folder Include="Queries\" />
   </ItemGroup>
 
   <ItemGroup>
