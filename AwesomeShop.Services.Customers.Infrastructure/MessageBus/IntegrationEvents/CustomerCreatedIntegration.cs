@@ -2,7 +2,7 @@
 
 namespace AwesomeShop.Services.Customers.Infrastructure.MessageBus.IntegrationEvents
 {
-    public class CustomerCreatedIntegration
+    public class CustomerCreatedIntegration : IEvent
     {
         public CustomerCreatedIntegration(Guid id, string fullName, string email)
         {

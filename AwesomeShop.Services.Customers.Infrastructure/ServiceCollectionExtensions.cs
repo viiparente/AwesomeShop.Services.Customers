@@ -60,6 +60,7 @@ namespace AwesomeShop.Services.Customers.Infrastructure
 
             services.AddSingleton(new ProducerConnection(connection));
             services.AddSingleton<IMessageBusClient, RabbitMqClient>();
+            services.AddTransient<IEventProcessor, EventProcessor>();
 
             return services;
         }
