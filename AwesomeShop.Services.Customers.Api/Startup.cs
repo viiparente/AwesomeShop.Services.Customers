@@ -26,7 +26,8 @@ namespace AwesomeShop.Services.Customers.Api
                 .AddMongo()
                 .AddRepositories()
                 .AddRabbitMq()
-                .AddSubscribers();
+                .AddSubscribers()
+                .AddConsulConfig(Configuration);
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -45,11 +46,10 @@ namespace AwesomeShop.Services.Customers.Api
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "AwesomeShop.Services.Customers.Api v1"));
             }
 
-            app.UseHttpsRedirection();
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseConsul();
 
             app.UseEndpoints(endpoints =>
             {
