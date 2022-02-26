@@ -1,11 +1,13 @@
 ﻿using AwesomeShop.Services.Customers.Core.Entities;
 using AwesomeShop.Services.Customers.Core.Repositories;
+using AwesomeShop.Services.Customers.Infrastructure.MessageBus;
 using AwesomeShop.Services.Customers.Infrastructure.Persistence;
 using AwesomeShop.Services.Customers.Infrastructure.Persistence.Repositories;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using RabbitMQ.Client;
 using System;
 
 namespace AwesomeShop.Services.Customers.Infrastructure
@@ -44,6 +46,20 @@ namespace AwesomeShop.Services.Customers.Infrastructure
         {
             services.AddMongoRepository<Customer>("customers");
             services.AddScoped<ICustomerRepository, CustomerRepository>();
+
+            return services;
+        }
+        public static IServiceCollection AddRabbitMq(this IServiceCollection services)
+        {
+            var connectionFactory = new ConnectionFactory
+            {
+                HostName = "localhost"
+            };
+
+            var connection = connectionFactory.CreateConnection("customers-service-producer");
+
+            services.AddSingleton(new ProducerConnection(connection));
+            services.AddSingleton<IMessageBusClient, RabbitMqClient>();
 
             return services;
         }
